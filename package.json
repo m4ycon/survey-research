@@ -1,0 +1,21 @@
+{
+  "name": "survey-research",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Maycon Fabio <m.vinnicyus@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "nodemon": "^2.0.4"
+  }
+}
