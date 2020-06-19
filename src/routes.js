@@ -28,7 +28,7 @@ routes.get('/langs', async (req, res) => {
 routes.post('/user-vote', async (req, res) => {
   const { email, votes } = req.body;
   try {
-    await voteController.create(email, votes);
+    await voteController.createUser(email, votes);
     res.status(200).json({ message: 'Votes inserted' });
   } catch (err) {
     res.status(400).json({ message: 'Something went wrong!' });

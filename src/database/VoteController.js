@@ -26,7 +26,23 @@ class VoteController {
     }
   }
 
-  async create(email, votes) {
+  async filter(table, where) {
+    const client = new Client(this.props);
+    try {
+      await client.connect();
+      const result = await client.query(`
+        SELECT * FROM ${table} 
+        WHERE ${where}
+      `);
+      return result.rows;
+    } catch (err) {
+      throw new Error(err);
+    } finally {
+      client.end();
+    }
+  }
+
+  async createUser(email, votes) {
     const client = new Client(this.props);
     try {
       await client.connect();
