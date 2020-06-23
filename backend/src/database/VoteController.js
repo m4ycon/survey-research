@@ -1,6 +1,6 @@
 import { Client } from 'pg';
 import crypto from 'crypto';
-import mailer from '../misc/mailer';
+import mailer from '../services/mailer';
 
 class VoteController {
   constructor() {
@@ -50,11 +50,11 @@ class VoteController {
       await client.connect();
       await client.query('BEGIN');
 
-      const res1 = await client.query(`
+      const response1 = await client.query(`
         SELECT verified FROM user_votes
         WHERE token = '${token}'
       `);
-      const verified = res1.rows[0].verified;
+      const verified = response1.rows[0].verified;
 
       if (!verified) {
         await client.query(`
@@ -62,11 +62,11 @@ class VoteController {
           SET verified = true
           WHERE token = '${token}'`);
 
-        const res2 = await client.query(`
+        const response2 = await client.query(`
           SELECT votes FROM user_votes
           WHERE token = '${token}'`);
 
-        const votes = res2.rows[0].votes;
+        const votes = response2.rows[0].votes;
 
         votes.map(async ({ [0]: lang, [1]: weight }) => {
           await client.query(
@@ -117,7 +117,12 @@ class VoteController {
           http://localhost:3333/validate/${token}
         </a>`;
 
-      mailer.sendEmail('admin@contact.com', email, 'Validating vote', html);
+      await mailer.sendEmail(
+        'admin@contact.com',
+        email,
+        'Validating vote',
+        html
+      );
 
       await client.query('COMMIT');
     } catch (err) {
