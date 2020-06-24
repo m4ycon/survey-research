@@ -111,18 +111,19 @@ class VoteController {
         VALUES ('${email}', '{${formattedVotes.join(',')}}', '${token}', false)`
       );
 
-      const html = `
-        Please, click on this link to confirm your vote: <br/>
-        <a href="http://localhost:3333/validate/${token}">
-          http://localhost:3333/validate/${token}
-        </a>`;
+      // Send confirmation email
+      // const html = `
+      //   Please, click on this link to confirm your vote: <br/>
+      //   <a href="http://localhost:3333/validate/${token}">
+      //     http://localhost:3333/validate/${token}
+      //   </a>`;
 
-      await mailer.sendEmail(
-        'admin@contact.com',
-        email,
-        'Validating vote',
-        html
-      );
+      // await mailer.sendEmail(
+      //   'admin@contact.com',
+      //   email,
+      //   'Validating vote',
+      //   html
+      // );
 
       await client.query('COMMIT');
     } catch (err) {

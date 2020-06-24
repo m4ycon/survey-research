@@ -1,23 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { ReactSortable } from 'react-sortablejs';
 import { FiMenu } from 'react-icons/fi';
-import axios from 'axios';
+import api from '../../services/api';
 
 import './styles.css';
 
 export default () => {
-  const [arr, setArr] = useState([]);
+  const [email, setEmail] = useState('');
+  const [langs, setLangs] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3333/langs').then((res) => setArr(res.data));
+    api.get('langs').then((res) => {
+      const arr = res.data.map(({ id, lang }) => {
+        return { id, lang };
+      });
+      setLangs(arr);
+    });
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email,
+      votes: langs.map((elem, index) => {
+        return { lang: elem.id, weight: langs.length - index };
+      }),
+    };
+    api.post('user-vote', data);
+  };
 
   return (
     <div className="container">
-      <h1>VOTE y VOTE</h1>
-      <form>
+      <h1>Just Vote</h1>
+      <form onSubmit={(event) => handleSubmit(event)}>
         <section>
-          <input type="email" name="email" id="email" placeholder="Email" />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
         </section>
 
         <section>
@@ -25,18 +49,18 @@ export default () => {
 
           <div className="table-rank">
             <div className="rank-nums">
-              {arr.map((elem, index) => (
+              {langs.map((elem, index) => (
                 <p key={index + 1}>{index + 1}</p>
               ))}
             </div>
             <ReactSortable
               className="rank-langs"
-              list={arr}
-              setList={setArr}
+              list={langs}
+              setList={setLangs}
               handle=".handler"
               animation={150}
             >
-              {arr.map(({ id, lang }) => (
+              {langs.map(({ id, lang }) => (
                 <div className="lang-container" key={id}>
                   <p>{lang}</p>
                   <FiMenu className="handler" cursor="move" />
