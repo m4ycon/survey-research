@@ -49,17 +49,18 @@
   border-radius: var(--border-radius-pattern);
 }
 
-.container form table {
-  width: 100%;
-  border-collapse: collapse;
+.container ul {
+  list-style: none;
 }
 
-.container form table td {
-  padding: 8px;
-}
-
-.container form table tr:hover {
-  background-color: #ccc;
+.container .lang-container {
+  background-color: white;
+  padding: 8px 16px;
+  border-radius: var(--border-radius-pattern);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .container .buttons {
