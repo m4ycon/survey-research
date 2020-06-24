@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ReactSortable } from 'react-sortablejs';
 import { FiMenu } from 'react-icons/fi';
 
@@ -18,29 +18,40 @@ export default () => {
     <div className="container">
       <h1>VOTE y VOTE</h1>
       <form>
-        <div>
+        <section>
           <input type="email" name="email" id="email" placeholder="Email" />
-        </div>
-        <div className="table-rank">
-          <label htmlFor="table">Ranqueie as linguagens</label>
-          <ReactSortable
-            list={arr}
-            setList={setArr}
-            handle=".handler"
-            animation={150}
-          >
-            {arr.map(({ id, lang }) => (
-              <div className="lang-container" key={id}>
-                <p>{lang}</p>
-                <FiMenu className="handler" cursor="move" />
-              </div>
-            ))}
-          </ReactSortable>
-        </div>
-        <div className="buttons">
+        </section>
+
+        <section>
+          <h3 className="rank-label">Ranqueie os items:</h3>
+
+          <div className="table-rank">
+            <div className="rank-nums">
+              {arr.map((elem, index) => (
+                <p key={index + 1}>{index + 1}</p>
+              ))}
+            </div>
+            <ReactSortable
+              className="rank-langs"
+              list={arr}
+              setList={setArr}
+              handle=".handler"
+              animation={150}
+            >
+              {arr.map(({ id, lang }) => (
+                <div className="lang-container" key={id}>
+                  <p>{lang}</p>
+                  <FiMenu className="handler" cursor="move" />
+                </div>
+              ))}
+            </ReactSortable>
+          </div>
+        </section>
+
+        <section className="buttons">
           <button type="button">Resultados</button>
           <button type="submit">Vote</button>
-        </div>
+        </section>
       </form>
     </div>
   );
