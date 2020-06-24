@@ -1,8 +1,14 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-function App() {
-  return <h1>Hello World!</h1>;
+import Home from './pages/Home';
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route component={Home} path="/" exact />
+      </Switch>
+    </BrowserRouter>
+  );
 }
-
-export default App;
