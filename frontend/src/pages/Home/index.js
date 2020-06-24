@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ReactSortable } from 'react-sortablejs';
 import { FiMenu } from 'react-icons/fi';
+import axios from 'axios';
 
 import './styles.css';
 
 export default () => {
-  const [arr, setArr] = useState([
-    { id: 1, lang: 'Javascript' },
-    { id: 2, lang: 'Ruby' },
-    { id: 3, lang: 'Python' },
-    { id: 4, lang: 'C++' },
-    { id: 5, lang: 'PHP' },
-    { id: 6, lang: 'Java' },
-  ]);
+  const [arr, setArr] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3333/langs').then((res) => setArr(res.data));
+  }, []);
 
   return (
     <div className="container">
