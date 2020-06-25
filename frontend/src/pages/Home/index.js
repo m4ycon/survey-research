@@ -18,15 +18,22 @@ export default () => {
     });
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      email,
-      votes: langs.map((elem, index) => {
-        return { lang: elem.id, weight: langs.length - index };
-      }),
-    };
-    api.post('user-vote', data);
+
+    await api
+      .get(`email/${email}`)
+      .then(async (res) => {
+        const data = {
+          email,
+          votes: langs.map((elem, index) => {
+            return { lang: elem.id, weight: langs.length - index };
+          }),
+        };
+        await api.post('user-vote', data);
+        console.log('Cadastrado com sucesso!');
+      })
+      .catch((err) => console.log('Email já cadastrado.'));
   };
 
   return (
