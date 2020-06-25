@@ -1,0 +1,51 @@
+:root {
+  --height-btn-and-input: 40px;
+  --border-radius-pattern: 12px;
+  --background-color: #004e34;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+form input {
+  height: var(--height-btn-and-input);
+  width: 100%;
+  padding-left: 10px;
+
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius-pattern);
+}
+
+button {
+  background-color: #009966;
+  font-size: 1.1em;
+  height: var(--height-btn-and-input);
+  color: white;
+
+  border: 0;
+  border-radius: var(--border-radius-pattern);
+  outline: 0;
+
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: 16px;
+
+  transition: all 300ms;
+}
+
+button:hover {
+  cursor: pointer;
+  filter: grayscale(0.2);
+}
+
+button:active {
+  transform: scale(0.95);
+  outline: 0;
+}

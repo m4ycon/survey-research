@@ -4,10 +4,13 @@ import { FiMenu } from 'react-icons/fi';
 import api from '../../services/api';
 
 import './styles.css';
+import Modal from '../../components/Modal';
 
 export default () => {
   const [email, setEmail] = useState('');
   const [langs, setLangs] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   useEffect(() => {
     api.get('langs').then((res) => {
@@ -21,6 +24,12 @@ export default () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!email) {
+      setModalMessage('Preencha o campo de email.');
+      setShowModal(true);
+      return;
+    }
+
     await api
       .get(`email/${email}`)
       .then(async (res) => {
@@ -33,7 +42,16 @@ export default () => {
         await api.post('user-vote', data);
         console.log('Cadastrado com sucesso!');
       })
-      .catch((err) => console.log('Email já cadastrado.'));
+      .then(() => {
+        setModalMessage(
+          'Confirme seus votos no link enviado para o seu email.'
+        );
+        setShowModal(true);
+      })
+      .catch((err) => {
+        setModalMessage('Email já cadastrado.');
+        setShowModal(true);
+      });
   };
 
   return (
@@ -82,6 +100,9 @@ export default () => {
           <button type="submit">Vote</button>
         </section>
       </form>
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        {modalMessage}
+      </Modal>
     </div>
   );
 };
