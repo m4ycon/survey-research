@@ -23,10 +23,12 @@ form input {
   border-radius: var(--border-radius-pattern);
 }
 
-button {
+button,
+.button-link {
   background-color: #009966;
-  font-size: 1.1em;
   height: var(--height-btn-and-input);
+  font-size: 1.1em;
+  text-decoration: none;
   color: white;
 
   border: 0;
@@ -36,6 +38,9 @@ button {
   padding-left: 16px;
   padding-right: 16px;
   margin-left: 16px;
+
+  display: flex;
+  align-items: center;
 
   transition: all 300ms;
 }

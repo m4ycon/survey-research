@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ReactSortable } from 'react-sortablejs';
+import { Link, useHistory } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import api from '../../services/api';
 
@@ -11,6 +12,8 @@ export default () => {
   const [langs, setLangs] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+
+  const history = useHistory();
 
   useEffect(() => {
     api.get('langs').then((res) => {
@@ -47,6 +50,9 @@ export default () => {
           'Confirme seus votos no link enviado para o seu email.'
         );
         setShowModal(true);
+        setInterval(() => {
+          history.push('/results');
+        }, 2500);
       })
       .catch((err) => {
         setModalMessage('Email já cadastrado.');
@@ -96,7 +102,9 @@ export default () => {
         </section>
 
         <section className="buttons">
-          <button type="button">Resultados</button>
+          <Link className="button-link" to="/results">
+            Resultados
+          </Link>
           <button type="submit">Vote</button>
         </section>
       </form>
