@@ -1,5 +1,14 @@
 import React from 'react';
 
+import './styles.css';
+
 export default () => {
-  return <h1>RESULTS</h1>;
+  return (
+    <div className="container">
+      <h1>Just Vote</h1>
+      <section>
+        <p>Conteúdo</p>
+      </section>
+    </div>
+  );
 };

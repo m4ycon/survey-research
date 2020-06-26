@@ -46,13 +46,7 @@ export default () => {
         console.log('Cadastrado com sucesso!');
       })
       .then(() => {
-        setModalMessage(
-          'Confirme seus votos no link enviado para o seu email.'
-        );
-        setShowModal(true);
-        setInterval(() => {
-          history.push('/results');
-        }, 2500);
+        history.push('/confirm-vote');
       })
       .catch((err) => {
         setModalMessage('Email já cadastrado.');

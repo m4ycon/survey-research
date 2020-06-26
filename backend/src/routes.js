@@ -1,5 +1,7 @@
 const { Router } = require('express');
 
+import urlFrontend from './config/urlFrontend';
+
 import VoteController from './database/VoteController';
 const voteController = new VoteController();
 
@@ -42,10 +44,10 @@ routes.get('/validate/:token', async (req, res) => {
   const { token } = req.params;
   try {
     await voteController.validate(token);
-    res.status(200).json({ message: 'Votes confirmed.' });
+    res.status(200).redirect(urlFrontend + '/confirm-vote/success');
   } catch (err) {
-    res.status(400).json({ message: 'Something went wrong!' });
     console.log(err);
+    res.status(400).redirect(urlFrontend + '/confirm-vote/failure');
   }
 });
 

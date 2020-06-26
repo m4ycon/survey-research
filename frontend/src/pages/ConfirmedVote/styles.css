@@ -1,0 +1,23 @@
+.container section {
+  background-color: #f0f0f5;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.container main {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+
+  min-height: 80px;
+}
+
+.container footer {
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 8px;
+}
