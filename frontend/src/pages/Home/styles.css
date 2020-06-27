@@ -8,14 +8,6 @@
   height: 100vh;
 }
 
-.container form section:first-of-type {
-  margin-bottom: 32px;
-}
-
-.container form section:last-of-type {
-  margin-top: 32px;
-}
-
 .container .rank-label {
   margin-bottom: 16px;
   margin-left: 51px;

@@ -1,7 +1,7 @@
 :root {
   --height-btn-and-input: 40px;
   --border-radius-pattern: 12px;
-  --background-color: #004e34;
+  --background-color: #0a5e0f;
 }
 
 * {
@@ -25,7 +25,7 @@ form input {
 
 button,
 .button-link {
-  background-color: #009966;
+  background-color: #56ad5c;
   height: var(--height-btn-and-input);
   width: min-content;
   font-size: 1.1em;
@@ -35,6 +35,7 @@ button,
   border: 0;
   border-radius: var(--border-radius-pattern);
   outline: 0;
+  box-shadow: 0 2px 3px #000000aa;
 
   padding-left: 16px;
   padding-right: 16px;
@@ -43,15 +44,17 @@ button,
   display: flex;
   align-items: center;
 
-  transition: all 300ms;
+  transition: all 200ms;
 }
 
-button:hover {
+button:hover,
+.button-link:hover {
   cursor: pointer;
   filter: grayscale(0.2);
 }
 
-button:active {
+button:active,
+.button-link:active {
   transform: scale(0.95);
   outline: 0;
 }

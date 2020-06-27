@@ -7,6 +7,7 @@
 }
 
 .container section h2 {
+  text-align: center;
   margin-bottom: 16px;
 }
 
@@ -19,7 +20,7 @@
   width: 100%;
 }
 
-.container .rank-table .container-lang h3 {
+.container .rank-table .container-lang h4 {
   width: 54px;
   line-height: 48px;
   margin-right: 8px;
@@ -30,15 +31,15 @@
   justify-content: center;
 }
 
-.container .rank-table .container-lang:first-of-type h3 {
+.container .rank-table .container-lang:first-of-type h4 {
   background-color: gold;
   border-radius: 50%;
 }
-.container .rank-table .container-lang:nth-of-type(2) h3 {
+.container .rank-table .container-lang:nth-of-type(2) h4 {
   background-color: silver;
   border-radius: 50%;
 }
-.container .rank-table .container-lang:nth-of-type(3) h3 {
+.container .rank-table .container-lang:nth-of-type(3) h4 {
   background-color: #a77044;
   border-radius: 50%;
 }
@@ -59,7 +60,7 @@
 }
 
 .container .rank-table .container-lang .percentage-container div {
-  background-color: #85bb65;
+  background-color: #94d398;
   border-radius: 8px;
 
   padding: 8px;

@@ -28,9 +28,9 @@ export default () => {
         <div className="rank-table">
           {langs.map(({ id, lang, votes }, index) => (
             <div key={id} className="container-lang">
-              <h3>{index + 1}</h3>
+              <h4>{index + 1}</h4>
               <div className="lang">
-                <p className="lang-name">{lang}</p>
+                <h3 className="lang-name">{lang}</h3>
                 <div className="percentage-container">
                   <div style={{ width: (votes / mostVoted) * 100 + '%' }}>
                     <p className="lang-percentage">
