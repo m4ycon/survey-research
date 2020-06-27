@@ -1,16 +1,16 @@
 import React from 'react';
 
-import './styles.css';
+import styles from './styles.js';
 
 export default ({ show, onClose, children }) => {
   if (!show) {
     return null;
   }
   return (
-    <section className="modal-bg">
-      <div className="modal-container">
-        <main>{children}</main>
-        <footer>
+    <section style={styles.modalBg}>
+      <div style={styles.modalContainer}>
+        <main style={styles.modalMain}>{children}</main>
+        <footer style={styles.modalFooter}>
           <button onClick={onClose}>OK</button>
         </footer>
       </div>

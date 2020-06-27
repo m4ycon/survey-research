@@ -55,56 +55,58 @@ export default () => {
   };
 
   return (
-    <div className="container">
-      <h1>Just Vote</h1>
-      <form onSubmit={(event) => handleSubmit(event)}>
-        <section>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </section>
+    <>
+      <div className="container">
+        <h1>Just Vote</h1>
+        <form onSubmit={(event) => handleSubmit(event)}>
+          <section>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </section>
 
-        <section>
-          <h3 className="rank-label">Ranqueie os items:</h3>
+          <section>
+            <h3 className="rank-label">Ranqueie os items:</h3>
 
-          <div className="table-rank">
-            <div className="rank-nums">
-              {langs.map((elem, index) => (
-                <p key={index + 1}>{index + 1}</p>
-              ))}
+            <div className="table-rank">
+              <div className="rank-nums">
+                {langs.map((elem, index) => (
+                  <p key={index + 1}>{index + 1}</p>
+                ))}
+              </div>
+              <ReactSortable
+                className="rank-langs"
+                list={langs}
+                setList={setLangs}
+                handle=".handler"
+                animation={150}
+              >
+                {langs.map(({ id, lang }) => (
+                  <div className="lang-container" key={id}>
+                    <p>{lang}</p>
+                    <FiMenu className="handler" cursor="move" />
+                  </div>
+                ))}
+              </ReactSortable>
             </div>
-            <ReactSortable
-              className="rank-langs"
-              list={langs}
-              setList={setLangs}
-              handle=".handler"
-              animation={150}
-            >
-              {langs.map(({ id, lang }) => (
-                <div className="lang-container" key={id}>
-                  <p>{lang}</p>
-                  <FiMenu className="handler" cursor="move" />
-                </div>
-              ))}
-            </ReactSortable>
-          </div>
-        </section>
+          </section>
 
-        <section className="buttons">
-          <Link className="button-link" to="/results">
-            Resultados
-          </Link>
-          <button type="submit">Vote</button>
-        </section>
-      </form>
+          <section className="buttons">
+            <Link className="button-link" to="/results">
+              Resultados
+            </Link>
+            <button type="submit">Vote</button>
+          </section>
+        </form>
+      </div>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
         {modalMessage}
       </Modal>
-    </div>
+    </>
   );
 };
