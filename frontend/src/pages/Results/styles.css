@@ -2,19 +2,70 @@
   width: 100%;
   max-width: 400px;
 
-  padding: 8px;
+  padding: 16px;
   box-sizing: border-box;
 }
 
-.container .rank-table {
-  border: 1px solid black;
+.container section h2 {
+  margin-bottom: 16px;
 }
 
-.container .rank-table .lang {
+.container .rank-table .container-lang {
   display: flex;
   flex-direction: row;
+  align-items: center;
+
+  margin-bottom: 8px;
+  width: 100%;
 }
 
-.container .rank-table .lang .percentage-votes {
-  background-color: red;
+.container .rank-table .container-lang h3 {
+  width: 54px;
+  line-height: 48px;
+  margin-right: 8px;
+
+  font-family: 'Press Start 2P', cursive;
+
+  display: flex;
+  justify-content: center;
+}
+
+.container .rank-table .container-lang:first-of-type h3 {
+  background-color: gold;
+  border-radius: 50%;
+}
+.container .rank-table .container-lang:nth-of-type(2) h3 {
+  background-color: silver;
+  border-radius: 50%;
+}
+.container .rank-table .container-lang:nth-of-type(3) h3 {
+  background-color: #a77044;
+  border-radius: 50%;
+}
+
+.container .rank-table .container-lang .lang {
+  width: 100%;
+}
+
+.container .rank-table .container-lang .lang-name {
+  padding-left: 8px;
+}
+
+.container .rank-table .container-lang .percentage-container {
+  display: block;
+
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.container .rank-table .container-lang .percentage-container div {
+  background-color: #85bb65;
+  border-radius: 8px;
+
+  padding: 8px;
+}
+
+.container .rank-table .container-lang .percentage-container .lang-percentage {
+  color: #000;
+  text-shadow: 0 0 1px #000;
 }

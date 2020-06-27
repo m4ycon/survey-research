@@ -5,7 +5,8 @@ import './styles.css';
 
 export default () => {
   const [langs, setLangs] = useState([]);
-  const [mostVoted, setMostVoted] = useState(0); // counting weights too
+  const [mostVoted, setMostVoted] = useState(0);
+  const [totVotes, setTotVotes] = useState(0);
 
   useEffect(() => {
     api.get('langs').then((res) => {
@@ -15,6 +16,7 @@ export default () => {
         )
       );
       setMostVoted(res.data[0].votes);
+      setTotVotes(res.data.reduce((acc, { votes }) => (acc += votes), 0));
     });
   }, []);
 
@@ -25,13 +27,17 @@ export default () => {
         <h2>Resultados</h2>
         <div className="rank-table">
           {langs.map(({ id, lang, votes }, index) => (
-            <div key={id} className="lang">
-              <p>{index + 1}</p>
-              <div
-                style={{ width: (votes / mostVoted) * 100 + '%' }}
-                className="percentage-votes"
-              >
-                <p>{lang}</p>
+            <div key={id} className="container-lang">
+              <h3>{index + 1}</h3>
+              <div className="lang">
+                <p className="lang-name">{lang}</p>
+                <div className="percentage-container">
+                  <div style={{ width: (votes / mostVoted) * 100 + '%' }}>
+                    <p className="lang-percentage">
+                      {((votes / totVotes) * 100).toFixed(2) + '%'}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
