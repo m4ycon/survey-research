@@ -34,7 +34,7 @@ export default () => {
                 <div className="percentage-container">
                   <div style={{ width: (votes / mostVoted) * 100 + '%' }}>
                     <p className="lang-percentage">
-                      {((votes / totVotes) * 100).toFixed(2) + '%'}
+                      {votes !== 0 ? ((votes / totVotes) * 100).toFixed(2) + '%' : '0%'}
                     </p>
                   </div>
                 </div>

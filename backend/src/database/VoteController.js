@@ -99,7 +99,7 @@ class VoteController {
 
       // Formatting to insert on db
       const formattedVotes = [];
-      noRepeatedVotes.map((elem) =>
+      noRepeatedVotes.map(elem =>
         formattedVotes.push(`{${elem.lang}, ${elem.weight}}`)
       );
 
@@ -112,18 +112,18 @@ class VoteController {
       );
 
       // Send confirmation email
-      // const html = `
-      //   Please, click on this link to confirm your vote: <br/>
-      //   <a href="http://localhost:3333/validate/${token}">
-      //     http://localhost:3333/validate/${token}
-      //   </a>`;
+      const html = `
+        Please, click on this link to confirm your vote: <br/>
+        <a href="http://localhost:3333/validate/${token}">
+          http://localhost:3333/validate/${token}
+        </a>`;
 
-      // await mailer.sendEmail(
-      //   'admin@contact.com',
-      //   email,
-      //   'Validating vote',
-      //   html
-      // );
+      await mailer.sendEmail(
+        'votes@contact.com',
+        email,
+        'Validating vote',
+        html
+      );
 
       await client.query('COMMIT');
     } catch (err) {

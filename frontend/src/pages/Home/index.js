@@ -16,7 +16,7 @@ export default () => {
   const history = useHistory();
 
   useEffect(() => {
-    api.get('langs').then((res) => {
+    api.get('langs').then(res => {
       const arr = res.data.map(({ id, lang }) => {
         return { id, lang };
       });
@@ -24,7 +24,7 @@ export default () => {
     });
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     if (!email) {
@@ -35,7 +35,7 @@ export default () => {
 
     await api
       .get(`email/${email}`)
-      .then(async (res) => {
+      .then(async res => {
         const data = {
           email,
           votes: langs.map((elem, index) => {
@@ -48,7 +48,7 @@ export default () => {
       .then(() => {
         history.push('/confirm-vote');
       })
-      .catch((err) => {
+      .catch(err => {
         setModalMessage('Email já cadastrado.');
         setShowModal(true);
       });
@@ -58,7 +58,7 @@ export default () => {
     <>
       <div className="container">
         <h1>Just Vote</h1>
-        <form onSubmit={(event) => handleSubmit(event)}>
+        <form onSubmit={event => handleSubmit(event)}>
           <section>
             <input
               type="email"
@@ -66,7 +66,7 @@ export default () => {
               id="email"
               placeholder="Email"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={event => setEmail(event.target.value)}
             />
           </section>
 
