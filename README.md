@@ -8,6 +8,8 @@
 
 This is a study repository, used to learn: postgres connection on node (without abstractions), and validating something (in this case, votes) by an email confirmation.
 
+Just vote is an App that you can vote, but in a fair way, you can rank the options, your votes will have a weight that make difference in the result.
+
 ---
 
 # Technologies used
